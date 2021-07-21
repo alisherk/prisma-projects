@@ -5,11 +5,16 @@ import { context } from './context';
 const server = new ApolloServer({
   schema,
   context,
+  playground: true,
+  cors: true,
+  subscriptions: {
+    async onConnect(params) {
+      console.log(params);
+    },
+  },
 });
 
-server.listen().then(async ({ url }) => {
-  console.log(`\
-🚀 Server ready at: ${url}
-⭐️ See sample queries: http://pris.ly/e/ts/graphql#using-the-graphql-api
-  `);
+server.listen().then(async ({ url, subscriptionsUrl }) => {
+  console.log(`\🚀 Server ready at: ${url}`);
+  console.log(`subbscription ready at ${subscriptionsUrl}`)
 });

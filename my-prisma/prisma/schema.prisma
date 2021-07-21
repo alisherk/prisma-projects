@@ -14,22 +14,20 @@ model Author {
   id    Int    @id @default(autoincrement())
   name  String
   books Book[]
-  comments Comments[]
-}
-
-model Comments {
-  id      Int    @id @default(autoincrement())
-  comment String 
-  book    Book?  @relation(fields: [bookId], references: [id])
-  bookId  Int?
-  author Author? @relation(fields: [authorId], references: [id])
-  authorId Int?
 }
 
 model Book {
-  id       Int        @id @default(autoincrement())
+  id       Int            @id @default(autoincrement())
   title    String
-  author   Author?    @relation(fields: [authorId], references: [id])
+  author   Author?        @relation(fields: [authorId], references: [id])
   authorId Int?
-  comments Comments[]
+  comments Comment[]
+}
+
+//book can have many comments and comments can have many books
+//this is an implicit many to many relationships in prisma
+model Comment {
+  id    Int            @id @default(autoincrement())
+  content String
+  books Book[]
 }

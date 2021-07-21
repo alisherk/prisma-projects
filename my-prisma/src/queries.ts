@@ -34,3 +34,4 @@ export const searchAuthor = queryField('searchAuthors', {
     return context.prisma.author.findMany({})
   }
 })
+

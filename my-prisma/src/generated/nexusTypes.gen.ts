@@ -16,15 +16,11 @@ declare global {
 export interface NexusGenInputs {
   AuthorCreateInput: { // input type
     books: NexusGenInputs['BookCreateInput'][]; // [BookCreateInput!]!
-    comments: NexusGenInputs['CommentCreateInput'][]; // [CommentCreateInput!]!
     name: string; // String!
   }
   BookCreateInput: { // input type
-    authorId?: number | null; // Int
+    comment?: string | null; // String
     title: string; // String!
-  }
-  CommentCreateInput: { // input type
-    comment: string; // String!
   }
 }
 
@@ -45,14 +41,17 @@ export interface NexusGenObjects {
     name?: string | null; // String
   }
   Book: { // root type
+    authorId?: number | null; // Int
     id: number; // Int!
     title: string; // String!
   }
   Comment: { // root type
-    comment: string; // String!
+    content: string; // String!
+    id: number; // Int!
   }
   Mutation: {};
   Query: {};
+  Subscription: {};
 }
 
 export interface NexusGenInterfaces {
@@ -72,15 +71,18 @@ export interface NexusGenFieldTypes {
     name: string | null; // String
   }
   Book: { // field return type
+    authorId: number | null; // Int
+    comments: NexusGenRootTypes['Comment'][]; // [Comment!]!
     id: number; // Int!
     title: string; // String!
   }
   Comment: { // field return type
-    comment: string; // String!
+    content: string; // String!
+    id: number; // Int!
   }
   Mutation: { // field return type
     createAuthor: NexusGenRootTypes['Author'] | null; // Author
-    createDraftBook: NexusGenRootTypes['Book'] | null; // Book
+    createBook: NexusGenRootTypes['Book'] | null; // Book
     deleteAuthor: NexusGenRootTypes['Author'] | null; // Author
   }
   Query: { // field return type
@@ -88,6 +90,9 @@ export interface NexusGenFieldTypes {
     books: Array<NexusGenRootTypes['Book'] | null>; // [Book]!
     searchAuthors: NexusGenRootTypes['Query'] | null; // Query
     searchBooks: Array<NexusGenRootTypes['Book'] | null>; // [Book]!
+  }
+  Subscription: { // field return type
+    newAuthorCreated: NexusGenRootTypes['Author'] | null; // Author
   }
 }
 
@@ -98,15 +103,18 @@ export interface NexusGenFieldTypeNames {
     name: 'String'
   }
   Book: { // field return type name
+    authorId: 'Int'
+    comments: 'Comment'
     id: 'Int'
     title: 'String'
   }
   Comment: { // field return type name
-    comment: 'String'
+    content: 'String'
+    id: 'Int'
   }
   Mutation: { // field return type name
     createAuthor: 'Author'
-    createDraftBook: 'Book'
+    createBook: 'Book'
     deleteAuthor: 'Author'
   }
   Query: { // field return type name
@@ -115,6 +123,9 @@ export interface NexusGenFieldTypeNames {
     searchAuthors: 'Query'
     searchBooks: 'Book'
   }
+  Subscription: { // field return type name
+    newAuthorCreated: 'Author'
+  }
 }
 
 export interface NexusGenArgTypes {
@@ -122,7 +133,7 @@ export interface NexusGenArgTypes {
     createAuthor: { // args
       data: NexusGenInputs['AuthorCreateInput']; // AuthorCreateInput!
     }
-    createDraftBook: { // args
+    createBook: { // args
       data: NexusGenInputs['BookCreateInput']; // BookCreateInput!
     }
     deleteAuthor: { // args

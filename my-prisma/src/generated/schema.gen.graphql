@@ -10,31 +10,29 @@ type Author {
 
 input AuthorCreateInput {
   books: [BookCreateInput!]!
-  comments: [CommentCreateInput!]!
   name: String!
 }
 
 type Book {
+  authorId: Int
+  comments: [Comment!]!
   id: Int!
   title: String!
 }
 
 input BookCreateInput {
-  authorId: Int
+  comment: String
   title: String!
 }
 
 type Comment {
-  comment: String!
-}
-
-input CommentCreateInput {
-  comment: String!
+  content: String!
+  id: Int!
 }
 
 type Mutation {
   createAuthor(data: AuthorCreateInput!): Author
-  createDraftBook(data: BookCreateInput!): Book
+  createBook(data: BookCreateInput!): Book
   deleteAuthor(id: Int!): Author
 }
 
@@ -43,4 +41,8 @@ type Query {
   books: [Book]!
   searchAuthors: Query
   searchBooks(searchString: String!): [Book]!
+}
+
+type Subscription {
+  newAuthorCreated: Author
 }
