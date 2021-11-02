@@ -1,0 +1,47 @@
+{
+  "name": "type-graphql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "postinstall": "yarn generate",
+    "start": "tsnd --respawn --transpile-only src/index",
+    "clean": "rm -rf dist",
+    "build": "yarn clean && tsc",
+    "generate": "yarn prisma generate",
+    "test": "jest --no-cache"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "2.27.0",
+    "apollo-server": "2.25.2",
+    "class-validator": "^0.13.1",
+    "connect-redis": "^6.0.0",
+    "graphql": "^15.5.1",
+    "graphql-fields": "^2.0.3",
+    "graphql-redis-subscriptions": "^2.4.0",
+    "graphql-scalars": "^1.10.0",
+    "ioredis": "^4.27.6",
+    "prisma": "2.27.0",
+    "redis": "^3.1.2",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/connect-redis": "^0.0.17",
+    "@types/graphql": "^14.5.0",
+    "@types/ioredis": "^4.26.6",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^16.4.0",
+    "@types/redis": "^2.8.31",
+    "jest": "^27.0.6",
+    "jest-mock-extended": "^1.0.18",
+    "ts-jest": "^27.0.4",
+    "ts-node": "^10.1.0",
+    "ts-node-dev": "^1.1.8",
+    "typegraphql-prisma": "^0.14.7",
+    "typescript": "^4.3.5"
+  }
+}
