@@ -53,5 +53,4 @@ const userInitialValue: User[] = [
   },
 ];
 
-export const localUserVar: ReactiveVar<User[]> =
-  makeVar<User[]>(userInitialValue);
+export const localUserVar: ReactiveVar<User[]> = makeVar<User[]>(userInitialValue);

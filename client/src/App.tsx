@@ -7,6 +7,8 @@ import { ReadCachedUsersFragment } from './components/ReadCachedUsersFragment';
 //import { LocalReactiveUsers } from './components/LocaReactiveUsers';
 //import { ModifiedUserLocal } from './components/ModifiedUserLocal';
 import { CompWithUseReactiveVar } from './components/CompWithUseReactiveVar';
+import { PersistedVar } from './components/PersistedVar';
+
 
 function App() {
   return (
@@ -15,6 +17,7 @@ function App() {
         <Switch>
           <Route path='/' exact>
             <h1> Sample client with ApolloClient 3 </h1>
+            <PersistedVar />
             <CreateUser />
             <QueryUsers />
             <p>  ____________ </p>

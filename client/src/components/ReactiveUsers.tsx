@@ -1,8 +1,5 @@
 import { localUserVar } from '../cache/cache';
 
-
-
-
 export const ReactiveUsers: React.FC = () => {
   const users = localUserVar();
 
